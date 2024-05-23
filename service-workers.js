@@ -32,13 +32,20 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
+  console.log('Service Worker: Fetch event', event.request.url);
   event.respondWith(
     caches.match(event.request)
       .then(response => {
         if (response) {
+          console.log('Service Worker: Found in cache', event.request.url);
           return response;
         }
-        return fetch(event.request);
+        console.log('Service Worker: Network request for', event.request.url);
+        return fetch(event.request)
+          .catch(error => {
+            console.error('Service Worker: Fetch failed', error);
+            throw error;
+          });
       })
   );
 });
