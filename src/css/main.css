@@ -1,0 +1,38 @@
+@import url('./colors.css');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--background-color);
+}
+
+html {
+  --md-filled-select-text-field-focus-trailing-icon-color: var(--primary-color);
+  --md-filled-select-text-field-focus-active-indicator-color: var(--focus-color);
+
+  --md-filled-button-container-color: var(--primary-color);
+  --md-filled-button-label-text-color: var(--secondary-color);
+  --md-filled-button-hover-label-text-color: var(--highlight-color);
+  --md-filled-button-pressed-label-text-color: var(--highlight-color);
+  --md-filled-button-outline-color: var(--outline-color);
+  --md-filled-button-pressed-outline-color: var(--accent-color);
+  --md-filled-button-container-height: 60px;
+  --md-filled-button-container-shape: 10px;
+  --md-filled-button-label-text-font: system-ui;
+  --md-filled-button-hover-state-layer-color: var(--outline-color);
+  --md-filled-button-pressed-state-layer-color: var(--accent-color);
+  --md-filled-button-focus-label-text-color: var(--highlight-color);
+}
+
+md-filled-select::part(menu) {
+  --md-menu-container-color: var(--highlight-secondary-color);
+}
+
+md-select-option[selected] {
+  background-color: var(--highlight-color);
+}
+
+md-select-option:hover {
+  background-color: var(--highlight-secondary-color);
+}

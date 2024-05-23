@@ -1,0 +1,12 @@
+html {
+  --primary-color: #cca43b; 
+  --secondary-color: #242f40; 
+  --accent-color: #363636; 
+  --background-color: #e5e5e5; 
+  --surface-color: #ffffff; 
+  --outline-color: #85736e; 
+  --highlight-color: #ffffff; 
+  --highlight-secondary-color: #f5f5f5; 
+  --focus-color: #cca43b; 
+  --gradient-color: rgba(255, 248, 240, 1);
+}
