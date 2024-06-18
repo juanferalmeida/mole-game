@@ -6,12 +6,3 @@ window.addEventListener('load', () => {
   initRouter(document.querySelector('#app'));
 });
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-workers.js').then((registration) => {
-      console.log('ServiceWorker registered: ', registration);
-    }).catch((registrationError) => {
-      console.log('ServiceWorker registration failed: ', registrationError);
-    });
-  });
-}

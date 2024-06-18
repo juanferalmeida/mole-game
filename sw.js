@@ -21,32 +21,17 @@ const urlsToCache = [
 
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        return cache.addAll(urlsToCache);
-      })
-      .catch(error => {
-        console.error('Error al abrir el caché: ', error);
-      })
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(urlsToCache);
+    })
   );
 });
 
 self.addEventListener('fetch', event => {
-  console.log('Service Worker: Fetch event', event.request.url);
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          console.log('Service Worker: Found in cache', event.request.url);
-          return response;
-        }
-        console.log('Service Worker: Network request for', event.request.url);
-        return fetch(event.request)
-          .catch(error => {
-            console.error('Service Worker: Fetch failed', error);
-            throw error;
-          });
-      })
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
   );
 });
 
@@ -56,7 +41,7 @@ self.addEventListener('activate', event => {
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
+          if (!cacheWhitelist.includes(cacheName)) {
             return caches.delete(cacheName);
           }
         })

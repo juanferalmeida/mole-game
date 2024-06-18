@@ -8,5 +8,15 @@
   <body>
     <div id="app"></div>
     <script type="module" src="main.js"></script>
+    <script type="module">
+      if ('serviceWorker' in navigator && import.meta.env.MODE === 'production') {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then(res => console.log('Service worker registered'))
+            .catch(err => console.log('Service worker not registered', err));
+        });
+      }
+    </script>
   </body>
 </html>
